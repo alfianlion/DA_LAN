@@ -1,1 +1,20 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as mp
+
+dfVisitors = pd.read_excel("Int Monthly Visitor.xlsx", index_col=0, na_values=" na ").fillna(0)
+dfVisitors.index = pd.to_datetime(dfVisitors.index)
+dfVisitors.columns = dfVisitors.columns.str.strip()
+dfOthers = dfVisitors.loc["1988":"1997" , "USA" : "Africa"]
+
+#del dfVisitors.columns['Brunei':'CIS & Eastern Europe']
+
+dfOthersTotal = dfOthers.sum()
+
+#dfOthersTotal.sort_values(by=['USA', 'Canada', 'Australia', 'New Zealand', 'Africa'], ascending=False)
+
+print(dfOthersTotal)
+
+#print(dfOthersTotal.iloc[: , :3].describe())
+#print(dfOthersTotal.max)
 
